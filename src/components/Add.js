@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {ResultCard} from "./ResultCard";
+import { ResultCard } from "./ResultCard";
 
 export const Add = () => {
   const [query, setQuery] = useState("");
@@ -10,7 +10,7 @@ export const Add = () => {
     setQuery(e.target.value);
     //get list of movies using api
     fetch(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&page=1&include_adult=false&query=${e.target.value}`).then(
-      results =>results.json())
+      results => results.json())
       .then(data => {
         if(!data.errors) {
           //if no errors then use data
@@ -19,7 +19,9 @@ export const Add = () => {
           // else set results to empty
           setResults([]);
         }
+        
       });
+      
   };
 
   return (

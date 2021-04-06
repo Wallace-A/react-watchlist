@@ -1,6 +1,9 @@
-import React from 'react'
-
+import React, {useContext } from 'react'
+import {GlobalContext} from "../context/GlobalState";
 export const ResultCard = ({movie}) => {
+  const {
+    addMovieToWatchList
+  } = useContext(GlobalContext); 
   return (
     <div className="result-card">
       <div className="poster-wrapper">
@@ -21,7 +24,8 @@ export const ResultCard = ({movie}) => {
             {movie.release_date ? movie.release_date.substring(0,4) : `-` }</h4>
         </div>
         <div className="controls">
-          <button className="btn">Add to watchlist</button>
+          <button className="btn"
+          onClick={() => addMovieToWatchList(movie)}>Add to watchlist</button>
         </div>
       </div>
     </div>
