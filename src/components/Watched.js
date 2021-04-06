@@ -1,8 +1,9 @@
 import React from 'react'
-export const Add = () => {
+
+export const Watched = () => {
   return (
     <div>
-      <h1>Add Page</h1>
+      <h1>Watched Page</h1>
     </div>
   )
 }
