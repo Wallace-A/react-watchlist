@@ -10,6 +10,14 @@ export default (state, action) => {
         ...state,
         watchlist: state.watchlist.filter(movie => movie.id !== action.payload)
       }
+    case "ADD_MOVIE_TO_WATCHED":
+      return {
+        ...state,
+        //remoe from watchlist first
+        watchlist: state.watchlist.filter(movie => movie.id !== action.payload.id),
+        //then add to watched
+        watched: [action.payload, ...state.watched],
+      };
     default:
       return state;
   }
