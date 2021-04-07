@@ -5,7 +5,7 @@ import AppReducer from "./AppReducer";
 const initialState = {
   //get watchlist from local storage if available, or return empty array
   watchlist: localStorage.getItem("watchlist") ? JSON.parse(localStorage.getItem("watchlist")) : [],
-  watched: [],
+  watched: localStorage.getItem("watched") ? JSON.parse(localStorage.getItem("watched")) : [],
 };
 
 //create context
@@ -18,7 +18,8 @@ export const GlobalProvider = (props) => {
  
   //save when watchlist is updated
   useEffect(() => {
-   localStorage.setItem("watchlist", JSON.stringify(state.watchlist))  
+   localStorage.setItem("watchlist", JSON.stringify(state.watchlist))
+   localStorage.setItem("watched", JSON.stringify(state.watched))  
   }, [state]);
   
   // actions
