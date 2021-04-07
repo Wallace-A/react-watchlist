@@ -1,9 +1,12 @@
 import React, {useContext } from 'react'
 import {GlobalContext} from "../context/GlobalState";
 export const ResultCard = ({movie}) => {
-  const {
-    addMovieToWatchList
-  } = useContext(GlobalContext); 
+  //get global variables
+  const { addMovieToWatchList, watchlist } = useContext(GlobalContext); 
+  //is movie already stored in the watchlist 
+  let storedMovie = watchlist.find(o => o.id === movie.id);
+  //if already in watchlist then disable add function
+  const watchlistDisabled = storedMovie ? true : false;
   return (
     <div className="result-card">
       <div className="poster-wrapper">
@@ -24,7 +27,9 @@ export const ResultCard = ({movie}) => {
             {movie.release_date ? movie.release_date.substring(0,4) : `-` }</h4>
         </div>
         <div className="controls">
-          <button className="btn"
+          <button 
+          className="btn"
+          disabled={watchlistDisabled}
           onClick={() => addMovieToWatchList(movie)}>Add to watchlist</button>
         </div>
       </div>

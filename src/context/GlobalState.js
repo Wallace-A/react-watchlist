@@ -3,7 +3,8 @@ import AppReducer from "./AppReducer";
 
 //initial state
 const initialState = {
-  watchlist: [],
+  //get watchlist from local storage if available, or return empty array
+  watchlist: localStorage.getItem("watchlist") ? JSON.parse(localStorage.getItem("watchlist")) : [],
   watched: [],
 };
 
@@ -14,6 +15,12 @@ export const GlobalContext = createContext(initialState);
 
 export const GlobalProvider = (props) => {
   const [state, dispatch] = useReducer(AppReducer, initialState);
+ 
+  //save when watchlist is updated
+  useEffect(() => {
+   localStorage.setItem("watchlist", JSON.stringify(state.watchlist))  
+  }, [state]);
+  
   // actions
   const addMovieToWatchList = (movie) => {
     dispatch({type: "ADD_MOVIE_TO_WATCHLIST", payload: movie});
