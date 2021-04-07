@@ -11,6 +11,7 @@ export const ResultCard = ({movie}) => {
   const watchlistDisabled = storedMovie ? true
   : storedMovieWatched ? true : false;
   
+  const watchedDisabled = storedMovieWatched ? true : false;
   return (
     <div className="result-card">
       <div className="poster-wrapper">
@@ -38,7 +39,7 @@ export const ResultCard = ({movie}) => {
           </button>
           <button 
           className="btn"
-          disabled={watchlistDisabled}
+          disabled={watchedDisabled}
           onClick={() => addMovieToWatched(movie)}>Add to watched
           </button>
         </div>
